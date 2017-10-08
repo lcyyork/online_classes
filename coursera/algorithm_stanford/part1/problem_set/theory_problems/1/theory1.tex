@@ -1,0 +1,282 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+%\lhead{\hmwkAuthorName} % Top left header
+\lhead{\hmwkClass\ (\hmwkClassInstructor): \hmwkTitle} % Top center header
+%\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Optional Theory Problems\ \#1} % Assignment title
+%\newcommand{\hmwkDueDate}{Monday,\ January\ 1,\ 2012} % Due date
+\newcommand{\hmwkClass}{CS\ 161} % Course/class
+%\newcommand{\hmwkClassTime}{10:30am} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Tim Roughgarden} % Teacher/lecturer
+%\newcommand{\hmwkAuthorName}{John Smith} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+%\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{Instructor: \textit{\hmwkClassInstructor}}
+%\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+%\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+%\newpage
+%\tableofcontents
+%\newpage
+
+%%%
+%  General stuff
+%%%
+
+The following problems are for those of you looking to challenge yourself beyond the required problem sets and programming questions.
+Most of these have been given in Stanford's CS161 course, Design and Analysis of Algorithms, at some point.
+They are completely optional and will not be graded.
+While they vary in level, many are pretty challenging, and we strongly encourage you to discuss ideas and approaches with your fellow students on the ``Theory Problems'' discussion form.
+
+\begin{homeworkProblem}
+You are given as input an unsorted array of $n$ distinct numbers, where $n$ is a power of 2.
+Give an algorithm that identifies the second-largest number in the array, and that uses at most $n + \log_2 n - 2$ comparisons.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+You are a given a unimodal array of $n$ distinct elements, meaning that its entries are in increasing order up until its maximum element, after which its elements are in decreasing order. Give an algorithm to compute the maximum element that runs in ${\cal O}(\log n)$ time.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+You are given a sorted (from smallest to largest) array $A$ of $n$ distinct integers which can be positive, negative, or zero.
+You want to decide whether or not there is an index $i$ such that $A[i] = i$.
+Design the fastest algorithm that you can for solving this problem.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+You are given an $n$ by $n$ grid of distinct numbers.
+A number is a local minimum if it is smaller than all of its neighbors.
+(A neighbor of a number is one immediately above, below, to the left, or the right.
+Most numbers have four neighbors; numbers on the side have three; the four corners have two.)
+Use the divide-and-conquer algorithm design paradigm to compute a local minimum with only ${\cal O}(n)$ comparisons between pairs of numbers.
+(\emph{Note}: since there are $n^2$ numbers in the input, you cannot afford to look at all of them.
+\emph{Hint}: Think about what types of recurrences would give you the desired upper bound.)
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Prove that the worst-case expected running time of every randomized comparison-based sorting algorithm is $\Omega(n\log n)$. (Here the worst-case is over inputs, and the expectation is over the random coin flips made by the algorithm.)
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Suppose we modify the deterministic linear-time selection algorithm by grouping the elements into groups of 7, rather than groups of 5. (Use the ``median-of-medians'' as the pivot, as before.) Does the algorithm still run in ${\cal O}(n)$ time? What if we use groups of 3?
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Given an array of $n$ distinct (but unsorted) elements $x_1, x_2, \dots, x_n$ with positive weights $w_1, w_2, \dots, w_n$ such that $\sum_{i=1}^{n} w_i = W$, a weighted median is an element $x_k$ for which the total weight of all elements with value less than $x_k$ (i.e., $\sum_{x_i < x_k} w_i$) is at most $W/2$, and also the total weight of elements with value larger than $x_k$ (i.e., $\sum_{x_i>x_k} w_i$) is at most $W/2$. Observe that there are at most two weighted medians. Show how to compute all weighted medians in ${\cal O}(n)$ worst-case time.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+We showed in an optional video lecture that every undirected graph has only polynomially (in the number n of vertices) different minimum cuts. Is this also true for directed graphs? Prove it or give a counterexample.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+For a parameter $\alpha \geq 1$, an $\alpha$-minimum cut is one for which the number of crossing edges is at most $\alpha$ times that of a minimum cut. How many $\alpha$-minimum cuts can an undirected graph have, as a function of $\alpha$ and the number $n$ of vertices? Prove the best upper bound that you can.
+\end{homeworkProblem}
+
+
+%%----------------------------------------------------------------------------------------
+%%	PROBLEM 1
+%%----------------------------------------------------------------------------------------
+%
+%% To have just one problem per page, simply put a \clearpage after each problem
+%
+%\begin{homeworkProblem}
+%\lipsum[1]\vspace{10pt} % Question
+%
+%\problemAnswer{ % Answer
+%%\begin{center}
+%%\includegraphics[width=0.75\columnwidth]{example_figure} % Example image
+%%\end{center}
+%
+%\lipsum[2]
+%}
+%\end{homeworkProblem}
+%
+%%----------------------------------------------------------------------------------------
+%%	PROBLEM 2
+%%----------------------------------------------------------------------------------------
+%
+%\begin{homeworkProblem}[Exercise \#\arabic{homeworkProblemCounter}] % Custom section title
+%\lipsum[3] % Question
+%
+%%--------------------------------------------
+%
+%\begin{homeworkSection}{(a)} % Section within problem
+%\lipsum[4]\vspace{10pt} % Question
+%
+%\problemAnswer{ % Answer
+%\lipsum[5]
+%}
+%\end{homeworkSection}
+%
+%%--------------------------------------------
+%
+%\begin{homeworkSection}{(b)} % Section within problem
+%\problemAnswer{ % Answer
+%\lipsum[6]
+%}
+%\end{homeworkSection}
+%
+%%--------------------------------------------
+%
+%\end{homeworkProblem}
+%
+%%----------------------------------------------------------------------------------------
+%%	PROBLEM 3
+%%----------------------------------------------------------------------------------------
+%
+%\begin{homeworkProblem}[Prob. \Roman{homeworkProblemCounter}] % Roman numerals
+%
+%%--------------------------------------------
+%
+%\begin{homeworkSection}{\homeworkProblemName:~(a)} % Using the problem name elsewhere
+%\problemAnswer{ % Answer
+%\lipsum[7]
+%}
+%\end{homeworkSection}
+%
+%%--------------------------------------------
+%
+%\begin{homeworkSection}{\homeworkProblemName:~(b)}
+%\lipsum[8]\vspace{10pt} % Question
+%
+%\problemAnswer{ % Answer
+%\lipsum[9]
+%}
+%\end{homeworkSection}
+%
+%%--------------------------------------------
+%
+%\end{homeworkProblem}
+%
+%%----------------------------------------------------------------------------------------
+%%	PROBLEM 4
+%%----------------------------------------------------------------------------------------
+%
+%\begin{homeworkProblem}[Prob. \Roman{homeworkProblemCounter}] % Roman numerals
+%\problemAnswer{ % Answer
+%\lipsum[10]
+%}
+%\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
