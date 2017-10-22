@@ -1,0 +1,327 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{hyperref}
+\usepackage{ams math}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+%\lhead{\hmwkAuthorName} % Top left header
+\lhead{\hmwkClass\ (\hmwkClassInstructor): \hmwkTitle} % Top center header
+%\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Problem Set\ \#1} % Assignment title
+%\newcommand{\hmwkDueDate}{Monday,\ January\ 1,\ 2012} % Due date
+\newcommand{\hmwkClass}{CS\ 161} % Course/class
+%\newcommand{\hmwkClassTime}{10:30am} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Tim Roughgarden} % Teacher/lecturer
+%\newcommand{\hmwkAuthorName}{John Smith} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+%\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{Instructor: \textit{\hmwkClassInstructor}}
+%\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+%\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+%\newpage
+%\tableofcontents
+%\newpage
+
+%%%
+%  General stuff
+%%%
+
+\begin{homeworkProblem}
+We are given as input a set of $n$ requests (e.g., for the use of an auditorium), with a known start time $s_i$ and finish time $t_i$ for each request $i$.
+Assume that all start and finish times are distinct.
+Two requests \emph{conflict} if they overlap in time --- if one of them starts between the start and finish times of the other.
+Our goal is to select a maximum-cardinality subset of the given requests that contains no conflicts.
+(For example, given three requests consuming the intervals $[0,3], [2,5]$, and $[4,7]$, we want to return the first and third requests.)
+We aim to design a greedy algorithm for this problem with the following form: At each iteration we select a new request $i$, including it in the solution-so-far and deleting from future consideration all requests that conflict with $i$.
+
+Which of the following greedy rules is guaranteed to always compute an optimal solution?
+\begin{itemize}
+\item At each iteration, pick the remaining request with the fewest number of conflicts with other remaining requests (breaking ties arbitrarily).
+\item At each iteration, pick the remaining request which requires the least time (i.e., has the smallest value of $t_i - s_i$) (breaking ties arbitrarily).
+\item At each iteration, pick the remaining request with the earliest finish time.
+\item At each iteration, pick the remaining request with the earliest start time.
+\end{itemize}
+
+\problemAnswer{ % Answer
+Let us find counterexamples for the first, second and the last choices.
+
+\begin{itemize}
+\item For the second choice, consider the example $[0, 4], [5, 9], [3, 6]$.
+If the shortest request is selected at each iteration, then we will end up with $[3, 6]$ after the first iteration.
+However, we should have selected $[0, 4]$ and $[3, 6]$.
+
+\item For the last choice, consider the example $[0, 10], [1, 2]$ and $[3, 4]$.
+If we pick the remaining request with the earliest start time, the process will finish with $[0, 10]$, but we want $[1, 2]$ and $[3, 4]$.
+
+\item It is a bit tricky for the first choice.
+Consider the requests $[0, 2], [4, 6], [8, 10], [12, 14]$, and $[5, 9]$.
+The conflicts to other requests are $0, 1, 1, 0$ and $2$, respectively.
+To construct a counterexample, we add $x \geq 3$ jobs with starting time $s \in (0,2)$ and ending time $e \in (4,5)$ and $y \geq 3$ jobs with $s \in (9,10)$ and $e \in (12,14)$.
+Now at first iteration, we will select request $[5, 9]$ (still only two conflicts) and delete $[4, 6]$ and $[8, 10]$.
+However, we would still like to select $[0, 2], [4, 6], [8, 10]$, and $[12, 14]$.
+\end{itemize}
+
+For the third choice, suppose we select request $x$ with the earliest finishing time.
+Then we may remove many requests $r_i, i = 1, 2, \dots$ that overlap with $x$.
+As such, at most 1 request in the set $\{x, r_1, r_2, \dots\}$ can be selected in the optimal solution.
+Hence, for every interval in the optimal solution, there is an interval in the greedy solution.
+This problem is the interval scheduling problem: \url{https://en.wikipedia.org/wiki/Interval_scheduling}.
+
+}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+We are given as input a set of $n$ jobs, where job $j$ has a processing time $p_j$ and a deadline $d_j$.
+Recall the definition of completion times $C_j$ from the video lectures.
+Given a schedule (i.e., an ordering of the jobs), we define the lateness $l_j$ of job $j$ as the amount of time $C_j - d_j$ after its deadline that the job completes, or as 0 if $C_j \leq d_j$.
+Our goal is to minimize the maximum lateness, $\max_{j} l_j$.
+
+Which of the following greedy rules produces an ordering that minimizes the maximum lateness? You can assume that all processing times and deadlines are distinct.
+\begin{itemize}
+\item None of the other answers are correct.
+\item Schedule the requests in increasing order of the product $d_j \cdot p_j$.
+\item Schedule the requests in increasing order of processing time $p_j$.
+\item Schedule the requests in increasing order of deadline $d_j$.
+\end{itemize}
+
+\problemAnswer{
+Let us proof the last choice by an exchange argument.
+
+First arrange the $n$ jobs in increasing order of deadlines: $d_1 < d_2 < \cdots < d_n$.
+The lateness of job $i$ is defined as:
+\begin{align}
+l_i =
+\begin{cases}
+\sum_{k=1}^{i} p_k - d_i, \quad C_i > d_i, \\
+0, \quad C_i \leq d_i.
+\end{cases}
+\end{align}
+
+Suppose we have the optimal solution $\sigma^\ast$ that is better than the greedy solution $\sigma$.
+In solution $\sigma$, we simply have the sequence $1, 2, \cdots, n$.
+Since $\sigma^\ast \neq \sigma$, there are consecutive jobs $i, j$ in $\sigma^\ast$ with $i > j$ but $d_i < d_j$.
+
+Now, swap the ordering of $i$ and $j$.
+Consequently, the lateness of any job other than $i$ and $j$ is unaffected;
+the lateness of $i$ goes down by $p_j$ (if not zero);
+and the lateness of $j$ goes up by $p_i$ (if not zero).
+Thus, if the maximum lateness (ML) appears in jobs other than $i$ and $j$, the ML among $n$ jobs is unaffected.
+If the ML appears in $i$ or $j$, the ML is $\max(p_j - d_j, p_i + p_j - d_i)$ before swapping and $\max(p_i - d_i, p_i + p_j - d_j)$ after swapping.
+Because $p_j > 0$ and $d_i < d_j$, we have
+\begin{align}
+\begin{cases}
+p_i - d_i &< p_i + p_j - d_i, \\
+p_i + p_j - d_j &< p_i + p_j - d_i,
+\end{cases}
+\end{align}
+and thus $\max(p_i - d_i, p_i + p_j - d_j) < p_i + p_j - d_i$, indicating that swapping $i$ and $j$ improves the ML.
+This is contradict to the optimality of $\sigma^\ast$.
+}
+\end{homeworkProblem}
+
+%%----------------------------------------------------------------------------------------
+%%	PROBLEM 1
+%%----------------------------------------------------------------------------------------
+%
+%% To have just one problem per page, simply put a \clearpage after each problem
+%
+%\begin{homeworkProblem}
+%\lipsum[1]\vspace{10pt} % Question
+%
+%\problemAnswer{ % Answer
+%%\begin{center}
+%%\includegraphics[width=0.75\columnwidth]{example_figure} % Example image
+%%\end{center}
+%
+%\lipsum[2]
+%}
+%\end{homeworkProblem}
+%
+%%----------------------------------------------------------------------------------------
+%%	PROBLEM 2
+%%----------------------------------------------------------------------------------------
+%
+%\begin{homeworkProblem}[Exercise \#\arabic{homeworkProblemCounter}] % Custom section title
+%\lipsum[3] % Question
+%
+%%--------------------------------------------
+%
+%\begin{homeworkSection}{(a)} % Section within problem
+%\lipsum[4]\vspace{10pt} % Question
+%
+%\problemAnswer{ % Answer
+%\lipsum[5]
+%}
+%\end{homeworkSection}
+%
+%%--------------------------------------------
+%
+%\begin{homeworkSection}{(b)} % Section within problem
+%\problemAnswer{ % Answer
+%\lipsum[6]
+%}
+%\end{homeworkSection}
+%
+%%--------------------------------------------
+%
+%\end{homeworkProblem}
+%
+%%----------------------------------------------------------------------------------------
+%%	PROBLEM 3
+%%----------------------------------------------------------------------------------------
+%
+%\begin{homeworkProblem}[Prob. \Roman{homeworkProblemCounter}] % Roman numerals
+%
+%%--------------------------------------------
+%
+%\begin{homeworkSection}{\homeworkProblemName:~(a)} % Using the problem name elsewhere
+%\problemAnswer{ % Answer
+%\lipsum[7]
+%}
+%\end{homeworkSection}
+%
+%%--------------------------------------------
+%
+%\begin{homeworkSection}{\homeworkProblemName:~(b)}
+%\lipsum[8]\vspace{10pt} % Question
+%
+%\problemAnswer{ % Answer
+%\lipsum[9]
+%}
+%\end{homeworkSection}
+%
+%%--------------------------------------------
+%
+%\end{homeworkProblem}
+%
+%%----------------------------------------------------------------------------------------
+%%	PROBLEM 4
+%%----------------------------------------------------------------------------------------
+%
+%\begin{homeworkProblem}[Prob. \Roman{homeworkProblemCounter}] % Roman numerals
+%\problemAnswer{ % Answer
+%\lipsum[10]
+%}
+%\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
