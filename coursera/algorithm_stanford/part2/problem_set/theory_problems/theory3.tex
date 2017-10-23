@@ -26,6 +26,7 @@
 \usepackage{extramarks} % Required for headers and footers
 \usepackage{graphicx} % Required to insert images
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{hyperref}
 
 % Margins
 \topmargin=-0.45in
@@ -98,7 +99,7 @@
 %	NAME AND CLASS SECTION
 %----------------------------------------------------------------------------------------
 
-\newcommand{\hmwkTitle}{Optional Theory Problems\ \#1} % Assignment title
+\newcommand{\hmwkTitle}{Optional Theory Problems\ \#3} % Assignment title
 %\newcommand{\hmwkDueDate}{Monday,\ January\ 1,\ 2012} % Due date
 \newcommand{\hmwkClass}{CS\ 161} % Course/class
 %\newcommand{\hmwkClassTime}{10:30am} % Class/lecture time
@@ -176,36 +177,40 @@ Is $T$ guaranteed to be a minimum-cost spanning tree?
 Prove it or exhibit a counterexample.
 \end{homeworkProblem}
 
-%\begin{homeworkProblem}
-%You are given an $n$ by $n$ grid of distinct numbers.
-%A number is a local minimum if it is smaller than all of its neighbors.
-%(A neighbor of a number is one immediately above, below, to the left, or the right.
-%Most numbers have four neighbors; numbers on the side have three; the four corners have two.)
-%Use the divide-and-conquer algorithm design paradigm to compute a local minimum with only ${\cal O}(n)$ comparisons between pairs of numbers.
-%(\emph{Note}: since there are $n^2$ numbers in the input, you cannot afford to look at all of them.
-%\emph{Hint}: Think about what types of recurrences would give you the desired upper bound.)
-%\end{homeworkProblem}
-%
-%\begin{homeworkProblem}
-%Prove that the worst-case expected running time of every randomized comparison-based sorting algorithm is $\Omega(n\log n)$. (Here the worst-case is over inputs, and the expectation is over the random coin flips made by the algorithm.)
-%\end{homeworkProblem}
-%
-%\begin{homeworkProblem}
-%Suppose we modify the deterministic linear-time selection algorithm by grouping the elements into groups of 7, rather than groups of 5. (Use the ``median-of-medians'' as the pivot, as before.) Does the algorithm still run in ${\cal O}(n)$ time? What if we use groups of 3?
-%\end{homeworkProblem}
-%
-%\begin{homeworkProblem}
-%Given an array of $n$ distinct (but unsorted) elements $x_1, x_2, \dots, x_n$ with positive weights $w_1, w_2, \dots, w_n$ such that $\sum_{i=1}^{n} w_i = W$, a weighted median is an element $x_k$ for which the total weight of all elements with value less than $x_k$ (i.e., $\sum_{x_i < x_k} w_i$) is at most $W/2$, and also the total weight of elements with value larger than $x_k$ (i.e., $\sum_{x_i>x_k} w_i$) is at most $W/2$. Observe that there are at most two weighted medians. Show how to compute all weighted medians in ${\cal O}(n)$ worst-case time.
-%\end{homeworkProblem}
-%
-%\begin{homeworkProblem}
-%We showed in an optional video lecture that every undirected graph has only polynomially (in the number n of vertices) different minimum cuts. Is this also true for directed graphs? Prove it or give a counterexample.
-%\end{homeworkProblem}
-%
-%\begin{homeworkProblem}
-%For a parameter $\alpha \geq 1$, an $\alpha$-minimum cut is one for which the number of crossing edges is at most $\alpha$ times that of a minimum cut. How many $\alpha$-minimum cuts can an undirected graph have, as a function of $\alpha$ and the number $n$ of vertices? Prove the best upper bound that you can.
-%\end{homeworkProblem}
+\begin{homeworkProblem}
+Consider a connected undirected graph $G$ with edge costs, which need not be distinct.
+Prove the following statement or provide a counterexample: for every MST $T$ of $G$, there exists a way to sort $G$'s edges in nondecreasing order of cost so that Kruskal's algorithm outputs the tree $T$.
+\end{homeworkProblem}
 
+\begin{homeworkProblem}
+Recall the definition of a minimum bottleneck spanning tree from Problem Set 2.
+Give a linear-time [i.e., ${\cal O}(m)$] algorithm for computing a minimum bottleneck spanning tree of a connected undirected graph.
+[Hint: make use of a non-trivial linear-time algorithm discussed in Part 1 of the specialization.]
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Consider a connected undirected graph $G$ with distinct edge costs that are positive integers between 1 and $n^3$, where $n$ is the number of vertices of $G$.
+How fast can you compute the MST of $G$?
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Read about \href{https://en.wikipedia.org/wiki/Matroid}{matroids} [\url{https://en.wikipedia.org/wiki/Matroid}].
+Prove that the \href{https://en.wikipedia.org/wiki/Matroid#Greedy_algorithm}{greedy algorithm} [\url{https://en.wikipedia.org/wiki/Matroid#Greedy_algorithm}] correctly computes a maximum-weight basis.
+For the matroid of spanning trees of a graph, this algorithm becomes Kruskal's algorithm.
+Can you formulate an analog of Prim's MST algorithm for matroids?
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Prove that our analysis of union-find with lazy unions and union by rank (but without path compression) is asymptotically optimal [i.e., there are sequences of operations where you do $\Theta(\log n)$] work on most of the operations).
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Prove that in our union-find data structure with lazy unions, union by rank, and path compression, some operations might require $\Theta(\log n)$ time.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Give a dynamic programming algorithm that computes an optimal binary search tree and runs in ${\cal O}(n^2)$ time.
+\end{homeworkProblem}
 
 %%----------------------------------------------------------------------------------------
 %%	PROBLEM 1
