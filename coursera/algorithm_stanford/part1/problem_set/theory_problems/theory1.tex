@@ -149,10 +149,29 @@ While they vary in level, many are pretty challenging, and we strongly encourage
 \begin{homeworkProblem}
 You are given as input an unsorted array of $n$ distinct numbers, where $n$ is a power of 2.
 Give an algorithm that identifies the second-largest number in the array, and that uses at most $n + \log_2 n - 2$ comparisons.
+
+\problemAnswer{
+We can build a binary tree using these element, like a tennis tournament.
+The bottom layer (layer $\log_2 n$) has $n$ element.
+The largest element $m$ is the root (layer 0) and the winner of the tournament.
+To find $m$ takes $n/2 + n/4 + \cdots + 1 = n - 1$ comparisons [from geometric series: $\sum_{k=0}^{n} z^k = (1 - z^{n+1}) / (1 - z)$].
+The second-largest element $s$ is only smaller than $m$ and thus must be an opponent of $m$.
+Element $m$ has compared with $\log_2 n$ element.
+Thus finding $s$ takes $\log_2 n - 1$ comparisons.
+In total, this algorithm takes $n + \log_2 n - 2$ comparisons.
+}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
 You are a given a unimodal array of $n$ distinct elements, meaning that its entries are in increasing order up until its maximum element, after which its elements are in decreasing order. Give an algorithm to compute the maximum element that runs in ${\cal O}(\log n)$ time.
+
+\problemAnswer{
+Given the array $A$ is unimodal, we can use binary search to find its maximum.
+At each step, we obtain the middle element of the current subarray of $A$, called ${\cal A}[m]$.
+If ${\cal A}[m-1] < {\cal A}[m]$ and ${\cal A}[m+1] < {\cal A}[m]$, then ${\cal A}[m]$ is the maximum element.
+If ${\cal A}[m-1] < {\cal A}[m] < {\cal A}[m+1]$, the maximum element lies to the right of $m$.
+If ${\cal A}[m-1] > {\cal A}[m] > {\cal A}[m+1]$, the maximum element lies to the left of $m$.
+}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
