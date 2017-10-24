@@ -178,6 +178,12 @@ If ${\cal A}[m-1] > {\cal A}[m] > {\cal A}[m+1]$, the maximum element lies to th
 You are given a sorted (from smallest to largest) array $A$ of $n$ distinct integers which can be positive, negative, or zero.
 You want to decide whether or not there is an index $i$ such that $A[i] = i$.
 Design the fastest algorithm that you can for solving this problem.
+
+\problemAnswer{
+We use binary search for this problem.
+Since $A[i] = i$, then $A[i] - i = 0$.
+Given that integers in $A$ are distinct, $A[j] - j \leq 0$ if $j < i$ and $A[j] - j \leq 0$ if $j > i$.
+}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
