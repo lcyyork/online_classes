@@ -151,6 +151,13 @@ While they vary in level, many are pretty challenging, and we strongly encourage
 Recall the asynchronous version of the Bellman-Ford algorithm discussed in the ``Internet Routing'' lectures. Prove that, in the worst case, this algorithm requires an exponential number of iterations to converge.
 \end{homeworkProblem}
 
+\begin{homeworkProblem}
+Consider an undirected graph $G = (V, E)$ with nonnegative edge costs. You are given a set $T \subseteq V$ of $k$ vertices called terminals.
+A Steiner tree is a subset $F \subseteq E$ of edges that contains a path between each pair of terminals.
+For example, if $T = V$, then the Steiner trees are the same as the connected subgraphs.
+It is a fact that the decision version of the Steiner tree problem is NP-complete.
+Give a dynamic programming algorithm for this problem (i.e., for computing a Steiner tree with the fewest number of edges) that has running time of the form ${\cal O} [c^k \cdot poly(n)]$, where $c$ is a constant (like 4) and $poly$ is some polynomial function.
+\end{homeworkProblem}
 
 %%----------------------------------------------------------------------------------------
 %%	PROBLEM 1
